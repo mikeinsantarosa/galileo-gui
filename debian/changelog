@@ -1,0 +1,18 @@
+galileo-gui (0.1.2-1mx15+1) mx; urgency=medium
+
+  * Fixed option pick method.
+
+ -- Mike Purtell <mandbx@sbcglobal.net>  Mon, 04 Sep 2017 16:46:59 -0700
+
+galileo-gui (0.1.0-1mx15+1) mx; urgency=medium
+
+  * Initial build.
+
+ -- Mike Purtell <mandbx@sbcglobal.net>  Mon, 04 Sep 2017 15:10:58 -0700
+
+galileo-gui (0.0.1-1mx15+1) mx; urgency=medium
+
+  * updated translations
+
+ -- Adrian <adrian@mxlinux.org>  Fri, 02 Jun 2017 19:08:51 -0400
+

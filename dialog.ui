@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>699</width>
+    <height>450</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>535</width>
+    <height>400</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Sync Your Tracker</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="images.qrc">
+    <normaloff>:/icons/galileo-gui.png</normaloff>:/icons/galileo-gui.png</iconset>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QStackedWidget" name="stackedWidget">
+     <property name="minimumSize">
+      <size>
+       <width>500</width>
+       <height>400</height>
+      </size>
+     </property>
+     <property name="currentIndex">
+      <number>1</number>
+     </property>
+     <widget class="QWidget" name="pageMain">
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <widget class="QLabel" name="label">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>155</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;This program executes the terminal based fitbit synchronizer application &lt;strong&gt;galileo&lt;/strong&gt;. &lt;br /&gt;When you press &lt;strong&gt;&amp;quot;Start&amp;quot;&lt;/strong&gt; the program will display the progress and results of the syncronizing process. &lt;p&gt;
+&lt;strong&gt;Quiet&lt;/strong&gt; - Minimal text&lt;br /&gt;
+&lt;strong&gt;Verbose&lt;/strong&gt; - Maximium text&lt;br /&gt;
+&lt;strong&gt;Force&lt;/strong&gt; - Update even if the device was just sync'd&lt;br /&gt;
+&lt;strong&gt;Force &amp;amp; Verbose&lt;/strong&gt; - Force with Maximum verbosity.&lt;br /&gt;
+&lt;strong&gt;Help &lt;/strong&gt;- Command argument info&lt;br /&gt;
+Please choose one of the available options and press the &amp;quot;Start&amp;quot; button.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>10</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupBox">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>170</height>
+          </size>
+         </property>
+         <property name="title">
+          <string>Options</string>
+         </property>
+         <widget class="QRadioButton" name="radioQuiet">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>30</y>
+            <width>491</width>
+            <height>20</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Quiet</string>
+          </property>
+         </widget>
+         <widget class="QRadioButton" name="radioVerbose">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>60</y>
+            <width>571</width>
+            <height>20</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Verbose</string>
+          </property>
+         </widget>
+         <widget class="QRadioButton" name="radioForce">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>90</y>
+            <width>551</width>
+            <height>20</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Force</string>
+          </property>
+         </widget>
+         <widget class="QRadioButton" name="radioForceVerbose">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>120</y>
+            <width>341</width>
+            <height>20</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Force + Verbose</string>
+          </property>
+         </widget>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="pageResult">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>400</height>
+       </size>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_3">
+       <item>
+        <widget class="QTextBrowser" name="outputBox">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>300</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer_4">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>4</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QLabel" name="outputLabel">
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QProgressBar" name="progressBar">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>20</height>
+          </size>
+         </property>
+         <property name="value">
+          <number>24</number>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer_3">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>10</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <property name="topMargin">
+      <number>0</number>
+     </property>
+     <item>
+      <widget class="QPushButton" name="btnAbout">
+       <property name="text">
+        <string>About</string>
+       </property>
+       <property name="icon">
+        <iconset theme="help-about">
+         <normaloff/>
+        </iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btnHelp">
+       <property name="text">
+        <string>Help</string>
+       </property>
+       <property name="icon">
+        <iconset theme="help-contents">
+         <normaloff/>
+        </iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeType">
+        <enum>QSizePolicy::MinimumExpanding</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btnSync">
+       <property name="text">
+        <string>Sync</string>
+       </property>
+       <property name="icon">
+        <iconset theme="dialog-ok">
+         <normaloff/>
+        </iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btnQuit">
+       <property name="text">
+        <string>Quit</string>
+       </property>
+       <property name="icon">
+        <iconset theme="window-close">
+         <normaloff/>
+        </iconset>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources>
+  <include location="images.qrc"/>
+ </resources>
+ <connections/>
+</ui>

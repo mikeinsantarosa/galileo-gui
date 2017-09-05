@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/icons">
+        <file>icons/dialog-ok.svg</file>
+        <file>galileo-gui.png</file>
+    </qresource>
+</RCC>

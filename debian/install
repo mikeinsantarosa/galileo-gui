@@ -1,0 +1,4 @@
+galileo-gui 		usr/bin
+galileo-gui.desktop	usr/share/applications
+galileo-gui.png		usr/share/pixmaps
+license.html		usr/share/doc/galileo-gui
