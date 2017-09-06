@@ -1,8 +1,3 @@
-This program is composed of two packages: the mx-findshare, GUI wrapper 
-is released under GPL while the findshare, the CLI program is released
-under a personal license, see debian/copyright for more info.
-
-
 GNU GENERAL PUBLIC LICENSE
                        Version 2, June 1991
 

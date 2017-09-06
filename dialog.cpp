@@ -56,7 +56,7 @@ void Dialog::setup()
 
     if (ui->btnSync->icon().isNull())
     {
-        ui->btnSync->setIcon(QIcon(":/icons/dialog-ok.svg"));
+        ui->btnSync->setIcon(QIcon::fromTheme("dialog-ok"));
     }
 
 }
@@ -92,8 +92,8 @@ void Dialog::procDone(int exitCode)
     }
 
     ui->btnSync->setEnabled(true);
-    ui->btnSync->setText(tr("< Back"));
-    ui->btnSync->setIcon(QIcon());
+    ui->btnSync->setText(tr("Back"));
+    ui->btnSync->setIcon(QIcon::fromTheme("go-previous"));
 }
 
 void Dialog::setConnections(QTimer *timer, QProcess *proc)
@@ -153,7 +153,7 @@ void Dialog::on_btnAbout_clicked()
     msgBox.addButton(tr("License"), QMessageBox::AcceptRole);
     msgBox.addButton(tr("Cancel"), QMessageBox::NoRole);
     if (msgBox.exec() == QMessageBox::AcceptRole) {
-        system("mx-viewer file:///usr/share/bin/mx-findshares/license.html 'MX Find Shares License'");
+        system("xdg-open file:///TODO/license.html");
     }
     this->show();
 }
