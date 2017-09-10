@@ -33,7 +33,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="pageMain">
       <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -55,13 +55,14 @@
           </size>
          </property>
          <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;This program executes the terminal based fitbit synchronizer application &lt;strong&gt;galileo&lt;/strong&gt;. &lt;br /&gt;When you press &lt;strong&gt;&amp;quot;Start&amp;quot;&lt;/strong&gt; the program will display the progress and results of the syncronizing process. &lt;p&gt;
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;This program executes the terminal based fitbit synchronizer application &lt;strong&gt;galileo&lt;/strong&gt;. &lt;br /&gt;When you press &lt;strong&gt;&amp;quot;Sync&amp;quot;&lt;/strong&gt; the program will display the progress and results of the syncronizing process. &lt;p&gt;
 &lt;strong&gt;Quiet&lt;/strong&gt; - Minimal text&lt;br /&gt;
 &lt;strong&gt;Verbose&lt;/strong&gt; - Maximium text&lt;br /&gt;
 &lt;strong&gt;Force&lt;/strong&gt; - Update even if the device was just sync'd&lt;br /&gt;
 &lt;strong&gt;Force &amp;amp; Verbose&lt;/strong&gt; - Force with Maximum verbosity.&lt;br /&gt;
-&lt;strong&gt;Help &lt;/strong&gt;- Command argument info&lt;br /&gt;
-Please choose one of the available options and press the &amp;quot;Start&amp;quot; button.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;strong&gt;Help&lt;/strong&gt; - Retrieve galileo CLI help&lt;br /&gt;&lt;p&gt;
+
+Please choose one of the available options and press the &lt;strong&gt;&amp;quot;Sync&lt;/strong&gt;&amp;quot; &lt;/strong&gt;button.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
          <property name="wordWrap">
           <bool>true</bool>
@@ -142,6 +143,19 @@ Please choose one of the available options and press the &amp;quot;Start&amp;quo
           </property>
           <property name="text">
            <string>Force + Verbose</string>
+          </property>
+         </widget>
+         <widget class="QRadioButton" name="radioHelp">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>150</y>
+            <width>107</width>
+            <height>20</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>Help</string>
           </property>
          </widget>
         </widget>
@@ -253,14 +267,25 @@ Please choose one of the available options and press the &amp;quot;Start&amp;quo
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="btnHelp">
-       <property name="text">
-        <string>Help</string>
+      <spacer name="horizontalSpacer_2">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
        </property>
-       <property name="icon">
-        <iconset theme="help-contents">
-         <normaloff/>
-        </iconset>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QLabel" name="labelFitbit">
+       <property name="text">
+        <string>Go to &lt;a href=&quot;https://www.fitbit.com/activities&quot;&gt;fitbit.com&lt;/a&gt;</string>
+       </property>
+       <property name="openExternalLinks">
+        <bool>true</bool>
        </property>
       </widget>
      </item>

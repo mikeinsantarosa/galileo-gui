@@ -1,3 +1,26 @@
+/*****************************************************************************
+ * dialog.cpp
+ *****************************************************************************
+ * Copyright (C) 2014 MX Authors
+ *
+ * Authors: mmikeinsantarosa/Adrian
+ *          Originally released for
+ *          MX Linux <http://mxlinux.org>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Galileo GUI is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Galileo GUI.  If not, see <http://www.gnu.org/licenses/>.
+ **********************************************************************/
+
 #include "dialog.h"
 #include "ui_dialog.h"
 
@@ -36,6 +59,7 @@ QString Dialog::getVersion(QString name)
 
 void Dialog::setup()
 {
+    QString opt;
 
     proc = new QProcess(this);
     timer = new QTimer(this);
@@ -46,12 +70,20 @@ void Dialog::setup()
     ui->btnSync->setEnabled(true);
     ui->progressBar->setValue(0);
 
-    //TODO: This should be whatever the user last used.
+    // Save the last option the user selected.
     //------------------------------------------------
+    opt = loadOptionSetting();
 
-    ui->radioForceVerbose->setChecked(true);
 
-    // END TODO
+    if(opt!="")
+    {
+        setSelectedRunOption(opt);
+    }
+    else
+    {
+        ui->radioForceVerbose->setChecked(true);
+    }
+
     //------------------------------------------------
 
     if (ui->btnSync->icon().isNull())
@@ -84,8 +116,16 @@ void Dialog::procDone(int exitCode)
     ui->progressBar->setValue(100);
     setCursor(QCursor(Qt::ArrowCursor));
 
-    if (exitCode == 0) {
+    if (exitCode == 0)
+    {
+        if(ui->radioHelp->isChecked())
+        {
+           ui->outputLabel->setText(tr("CLI Help for galileo"));
+        }
+        else
+        {
         ui->outputLabel->setText(tr("Finished synchronizing your tracker."));
+        }
     } else {
         QMessageBox::critical(this, tr("Error"),
                               tr("Process finished. Errors have occurred."));
@@ -122,21 +162,25 @@ void Dialog::onStdoutAvailable()
 void Dialog::on_radioQuiet_clicked()
 {
     // save this setting
+    saveOptionSetting("quiet");
 }
 
 void Dialog::on_radioVerbose_clicked()
 {
     // save this setting
+    saveOptionSetting("verbose");
 }
 
 void Dialog::on_radioForce_clicked()
 {
     // save this setting
+    saveOptionSetting("force");
 }
 
 void Dialog::on_radioForceVerbose_clicked()
 {
     // save this setting
+    saveOptionSetting("forceverbose");
 }
 
 void Dialog::on_btnAbout_clicked()
@@ -146,23 +190,19 @@ void Dialog::on_btnAbout_clicked()
                        tr("About Galileo GUI"), "<p align=\"center\"><b><h2>" +
                        tr("Galileo GUI") + "</h2></b></p><p align=\"center\">" + tr("Version: ") +
                        getVersion("galileo-gui") + "</p><p align=\"center\"><h3>" +
-                       tr("GUI to run fitbit tracker sync applicaiton galileo from") + "</h3></p><p align=\"center\"><a href=\"http://mxlinux.org\">http://mxlinux.org</a><br /></p><p>" +
+                       tr("GUI to run fitbit tracker sync applicaiton galileo") + "</h3><h4><br/>" +
                        tr("This program is composed of 2 packages:") +
                        "<p>galileo, the CLI utility: Copyright (c) Benoît Allard</p>" +
-                       "<p>galileo-gui, the GUI wrapper: " + tr("Copyright (c) MX Linux\n") + "<br /><br /></p>", 0, this);
+                       "<p>galileo-gui, the GUI wrapper: " +
+                       tr("Copyright (c) MX Linux\n") + "<br /><br /></p>", 0, this);
     msgBox.addButton(tr("License"), QMessageBox::AcceptRole);
     msgBox.addButton(tr("Cancel"), QMessageBox::NoRole);
     if (msgBox.exec() == QMessageBox::AcceptRole) {
-        system("xdg-open file:///TODO/license.html");
+        system("xdg-open file:///usr/share/doc/galileo-gui/license.html");
     }
     this->show();
 }
 
-void Dialog::on_btnHelp_clicked()
-{
-    //show the -h output from galileo
-
-}
 
 void Dialog::on_btnSync_clicked()
 {
@@ -209,9 +249,6 @@ void Dialog::Sync(QString option)
 
     QString cmd = QString(sCommand + " " + option);
 
-
-    qDebug() << "Executing Sync()" << " using command " << cmd;
-
     ui->stackedWidget->setCurrentWidget(ui->pageResult);
     setConnections(timer, proc);
 
@@ -233,7 +270,72 @@ QString Dialog::getOption()
             return QString("--force");
         }
     else
+            if(ui->radioForceVerbose->isChecked())
         {
             return QString("--force -v");
         }
+    else
+    {
+        return QString("--help");
+    }
+}
+
+void Dialog::saveOptionSetting(QString opt)
+{
+    QString thisPath = QDir::homePath() + "/.config/galileo-gui/galileo-gui.conf";
+
+    config_file.setFileName(thisPath);
+    QSettings settings(config_file.fileName(), QSettings::IniFormat);
+    settings.beginGroup("selectedRunOption");
+    settings.setValue("runOption",opt);
+    settings.endGroup();
+
+}
+
+QString Dialog::loadOptionSetting()
+{
+
+    QString opt;
+
+    QString thisPath = QDir::homePath() + "/.config/galileo-gui/galileo-gui.conf";
+    config_file.setFileName(thisPath);
+    QSettings settings(config_file.fileName(), QSettings::IniFormat);
+    settings.beginGroup("selectedRunOption");
+    opt = settings.value("runOption").toString();
+    settings.endGroup();
+
+    return opt;
+}
+
+void Dialog::setSelectedRunOption(QString opt)
+{
+    if(opt=="quiet")
+    {
+        ui->radioQuiet->setChecked(true);
+    }
+    if(opt=="verbose")
+    {
+        ui->radioVerbose->setChecked(true);
+    }
+    if(opt=="force")
+    {
+        ui->radioForce->setChecked(true);
+    }
+    if(opt=="forceverbose")
+    {
+        ui->radioForceVerbose->setChecked(true);
+    }
+    if(opt=="help")
+    {
+        ui->radioHelp->setChecked(true);
+    }
+
+}
+
+
+
+void Dialog::on_radioHelp_clicked()
+{
+    // save this setting
+    saveOptionSetting("help");
 }
